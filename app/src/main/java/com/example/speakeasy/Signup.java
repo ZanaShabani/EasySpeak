@@ -51,20 +51,20 @@ public class Signup extends AppCompatActivity {
             if (validateFields()) {
                 Log.d(TAG, "onCreate: Validation successful");
 
-                String name = name.getText().toString().trim();
-                String email = email.getText().toString().trim();
-                String password = password.getText().toString().trim();
+                String name1 = name.getText().toString().trim();
+                String email1 = email.getText().toString().trim();
+                String password1 = password.getText().toString().trim();
                 String surname = username.getText().toString().trim();
                 String phone = number.getText().toString().trim();
 
-                Log.d(TAG, "onCreate: Name: " + name + ", Email: " + email + ", Surname: " + surname + ", Phone: " + phone);
+                Log.d(TAG, "onCreate: Name: " + name1 + ", Email: " + email1 + ", Surname: " + surname + ", Phone: " + phone);
 
                 // Proceed with signup logic
-                if (DB.checkAdminEmail(email)) {
+                if (DB.checkAdminEmail(email1)) {
                     Toast.makeText(this, "Admin user already exists.", Toast.LENGTH_SHORT).show();
-                } else if (DB.insertAdminUser(email,password,name,surname,phone)) {
+                } else if (DB.insertAdminUser(email1,password1,name1,surname,phone)) {
                     Intent intent = new Intent(this, Verify.class );
-                    intent.putExtra("USER_EMAIL", email); // Pass the email to Verify activity
+                    intent.putExtra("USER_EMAIL", email1); // Pass the email to Verify activity
                     startActivity(intent);
                 } else {
                     Toast.makeText(this, "Failed to register admin user.", Toast.LENGTH_SHORT).show();
