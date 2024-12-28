@@ -1,4 +1,6 @@
 package com.example.speakeasy;
+import static java.util.Currency.getInstance;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -85,4 +87,15 @@ public class DB extends SQLiteOpenHelper {
         cursor.close();
         return exists;
     }
+    public boolean updateUserPassword(String email, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt()); // Hash the password
+        values.put("password", hashedPassword);
+
+        int rows = db.update("users", values, "email = ?", new String[]{email});
+        return rows > 0; // Return true if at least one row was updated
+    }
+
+
 }

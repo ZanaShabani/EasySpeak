@@ -2,7 +2,6 @@ package com.example.speakeasy;
 
 import static android.content.ContentValues.TAG;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.regex.Pattern;
 
-public class Signup extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
     EditText name;
     EditText username;
     EditText email;
@@ -44,7 +43,7 @@ public class Signup extends AppCompatActivity {
 
 
         login_button.setOnClickListener(view->{
-            startActivity(new Intent(this, Login.class));
+            startActivity(new Intent(this, LogIn.class));
         });
         signup_button.setOnClickListener(view->{
 

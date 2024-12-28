@@ -26,10 +26,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login"
+            android:name=".LogIn"
             android:exported="false"></activity>
         <activity
-            android:name=".Signup"
+            android:name=".SignUp"
             android:exported="false"></activity>
         <activity
             android:name=".Verify"

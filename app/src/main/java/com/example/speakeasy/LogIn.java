@@ -4,13 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Login extends AppCompatActivity {
+public class LogIn extends AppCompatActivity {
     Button signup_button;
     EditText email;
     EditText password;
+    TextView forgot_password1;
     Button login_button;
     DB DB;
 
@@ -21,6 +23,7 @@ public class Login extends AppCompatActivity {
         signup_button = findViewById(R.id.signup_button);
         email = findViewById(R.id.email);
         password= findViewById(R.id.password);
+        forgot_password1 = findViewById(R.id.Forgot_Password);
         login_button = findViewById(R.id.login_button);
 
         DB = new DB(this);
@@ -35,7 +38,7 @@ public class Login extends AppCompatActivity {
             }
         });
         signup_button.setOnClickListener(view->{
-            startActivity(new Intent(this, Signup.class));
+            startActivity(new Intent(this, SignUp.class));
         });
 
     }
