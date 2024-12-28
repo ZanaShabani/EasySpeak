@@ -8,7 +8,7 @@ public class Verify extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.verify);
+        setContentView(R.layout.activity_verify);
 }
 
 }

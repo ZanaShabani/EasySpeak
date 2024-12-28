@@ -30,7 +30,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TalkPoint"
+            android:text="EasyTalk"
             android:textAlignment="center"
             android:textSize="34sp"
             android:textStyle="italic" />
