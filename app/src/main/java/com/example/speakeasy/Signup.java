@@ -79,14 +79,14 @@ public class Signup extends AppCompatActivity {
     }
     private boolean validateFields() {
         // Retrieve values
-        String name = name.getText().toString().trim();
+        String name1 = name.getText().toString().trim();
         String surname = username.getText().toString().trim();
         String email2 = email.getText().toString().trim();
         String phone = number.getText().toString().trim();
-        String password = password.getText().toString().trim();
+        String password1 = password.getText().toString().trim();
 
         // Validate Name (only alphabets, not empty)
-        if (TextUtils.isEmpty(name) || !name.matches("[a-zA-Z]+")) {
+        if (TextUtils.isEmpty(name1) || !name1.matches("[a-zA-Z]+")) {
             name.setError("Name must contain only letters and not be empty.");
             return false;
         }
@@ -111,8 +111,8 @@ public class Signup extends AppCompatActivity {
 
         // Validate Password
         // At least 1 lowercase, 1 uppercase, 1 digit, 1 special character, 6-20 characters, no spaces
-        if (TextUtils.isEmpty(password) ||
-                !Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{6,20}$").matcher(password).matches()) {
+        if (TextUtils.isEmpty(password1) ||
+                !Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{6,20}$").matcher(password1).matches()) {
             password.setError("Password must contain 1 lowercase, 1 uppercase, 1 digit, 1 special character, and be 6-20 characters long.");
             return false;
         }
