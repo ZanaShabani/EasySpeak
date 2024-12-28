@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
             String password2 = password.getText().toString().trim();
 
             if(DB.validateUser(email2, password2)){
-                handleLogin();
+                loginNotification();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
@@ -38,10 +38,9 @@ public class Login extends AppCompatActivity {
             startActivity(new Intent(this, Signup.class));
         });
 
-       login_button.setOnClickListener(v -> handleLogin());
     }
 
-    private void handleLogin() {
+    private void loginNotification() {
 
             Notification.sendNotification(
                     this,
