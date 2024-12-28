@@ -16,10 +16,11 @@ import java.util.Random;
 import javax.mail.MessagingException;
 
 public class Verify extends AppCompatActivity {
-    private EditText otp;
+     EditText otp;
     private Button checkCode;
     private String emailRecipient;
     private TextView resendCode;
+    private String code = generateCode();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
