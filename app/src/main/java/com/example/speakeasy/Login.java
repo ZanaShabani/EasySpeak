@@ -29,6 +29,7 @@ public class Login extends AppCompatActivity {
             String password2 = password.getText().toString().trim();
 
             if(DB.validateUser(email2, password2)){
+                handleLogin();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
@@ -41,18 +42,13 @@ public class Login extends AppCompatActivity {
     }
 
     private void handleLogin() {
-        boolean loginSuccessful = true;
 
-        if (loginSuccessful) {
             Notification.sendNotification(
                     this,
                     "Welcome!",
                     "Thanks for logging in! Start your learning journey now."
             );
-        } else {
         }
-
-    }
 
 
 }
