@@ -17,6 +17,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Notification.createNotificationChannel(this);
         signup_button = findViewById(R.id.signup_button);
         email = findViewById(R.id.email);
         password= findViewById(R.id.password);
@@ -36,6 +37,22 @@ public class Login extends AppCompatActivity {
             startActivity(new Intent(this, Signup.class));
         });
 
+       login_button.setOnClickListener(v -> handleLogin());
     }
+
+    private void handleLogin() {
+        boolean loginSuccessful = true;
+
+        if (loginSuccessful) {
+            Notification.sendNotification(
+                    this,
+                    "Welcome!",
+                    "Thanks for logging in! Start your learning journey now."
+            );
+        } else {
+        }
+
+    }
+
 
 }

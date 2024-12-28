@@ -1,10 +1,13 @@
 package com.example.speakeasy;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -25,4 +28,6 @@ public class MainActivity extends AppCompatActivity {
             }
         },2000);
     }
+
+
 }
