@@ -37,6 +37,9 @@
         <activity
             android:name=".ForgotPassword"
             android:exported="false"></activity>
+        <activity
+            android:name=".HomePage"
+            android:exported="false"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

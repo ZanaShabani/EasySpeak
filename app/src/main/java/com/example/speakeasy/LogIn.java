@@ -33,7 +33,7 @@ public class LogIn extends AppCompatActivity {
 
             if(DB.validateUser(email2, password2)){
                 loginNotification();
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, HomePage.class);
                 startActivity(intent);
             }
         });
