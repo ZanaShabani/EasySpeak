@@ -24,7 +24,7 @@
             android:layout_width="247dp"
             android:layout_height="222dp"
             android:layout_marginLeft="85dp"
-            app:srcCompat="@drawable/foto" />
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/textView"
