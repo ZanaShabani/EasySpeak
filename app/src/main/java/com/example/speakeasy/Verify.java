@@ -2,6 +2,7 @@ package com.example.speakeasy;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -69,7 +70,9 @@ public class Verify extends AppCompatActivity {
 
         String inputString = otp.getText().toString().trim();
         if (inputString.equals(code)) {
-            Toast.makeText(this, "Code is correct!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Account verified, you may proceed to log in!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LogIn.class));
+
         } else {
             Toast.makeText(this, "Incorrect code, try again.", Toast.LENGTH_SHORT).show();
         }
