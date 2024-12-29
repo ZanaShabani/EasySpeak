@@ -17,10 +17,13 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+        Notification.createNotificationChannel(this);
+
 
         email = getIntent().getStringExtra("USER_EMAIL");
         DB = new DB(this);
         greetingView = findViewById(R.id.greeting);
+        loginNotification();
 
 
         String username = DB.getUsername(email);
@@ -32,4 +35,14 @@ public class HomePage extends AppCompatActivity {
 
 
     }
+
+    private void loginNotification() {
+
+        Notification.sendNotification(
+                this,
+                "Welcome!",
+                "Thanks for logging in! Start your learning journey now."
+        );
+    }
+
 }

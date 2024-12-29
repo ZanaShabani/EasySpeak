@@ -20,7 +20,6 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Notification.createNotificationChannel(this);
         signup_button = findViewById(R.id.signup_button);
         email = findViewById(R.id.email);
         password= findViewById(R.id.password);
@@ -40,7 +39,6 @@ public class LogIn extends AppCompatActivity {
             } else if (!DB.validateUser(email2, password2)) {
                 Toast.makeText(LogIn.this, "Incorrect password", Toast.LENGTH_SHORT).show();
             } else {
-                loginNotification();
                 Intent intent = new Intent(this, HomePage.class);
                 intent.putExtra("USER_EMAIL", email2);
                 startActivity(intent);
@@ -60,14 +58,6 @@ public class LogIn extends AppCompatActivity {
 
     }
 
-    private void loginNotification() {
-
-            Notification.sendNotification(
-                    this,
-                    "Welcome!",
-                    "Thanks for logging in! Start your learning journey now."
-            );
-        }
 
 
 }
