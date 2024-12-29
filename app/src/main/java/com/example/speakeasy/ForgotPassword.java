@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ForgotPassword extends AppCompatActivity {
 
+
     // Database instance
     DB db;
 

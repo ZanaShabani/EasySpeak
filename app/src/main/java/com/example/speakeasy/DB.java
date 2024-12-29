@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -93,9 +94,19 @@ public class DB extends SQLiteOpenHelper {
         String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt()); // Hash the password
         values.put("password", hashedPassword);
 
+        // Log the email being updated
+        Log.d("DB", "Attempting to update password for email: " + email);
+
         int rows = db.update("users", values, "email = ?", new String[]{email});
-        return rows > 0; // Return true if at least one row was updated
+        if (rows > 0) {
+            Log.d("DB", "Password updated successfully for email: " + email);
+            return true;
+        } else {
+            Log.d("DB", "Failed to update password. Email not found: " + email);
+            return false;
+        }
     }
+
 
 
 }

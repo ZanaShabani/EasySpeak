@@ -34,7 +34,9 @@
         <activity
             android:name=".Verify"
             android:exported="false"></activity>
-
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

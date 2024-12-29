@@ -40,6 +40,9 @@ public class LogIn extends AppCompatActivity {
         signup_button.setOnClickListener(view->{
             startActivity(new Intent(this, SignUp.class));
         });
+        forgot_password1.setOnClickListener(view->{
+            startActivity(new Intent(this, ForgotPassword.class));
+        });
 
     }
 
