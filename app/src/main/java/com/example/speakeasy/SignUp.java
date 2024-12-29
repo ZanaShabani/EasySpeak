@@ -59,14 +59,14 @@ public class SignUp extends AppCompatActivity {
                 Log.d(TAG, "onCreate: Name: " + name1 + ", Email: " + email1 + ", Surname: " + surname + ", Phone: " + phone);
 
                 // Proceed with signup logic
-                if (DB.checkAdminEmail(email1)) {
-                    Toast.makeText(this, "Admin user already exists.", Toast.LENGTH_SHORT).show();
-                } else if (DB.insertAdminUser(email1,password1,name1,surname,phone)) {
+                if (DB.checkEmail(email1)) {
+                    Toast.makeText(this, "User already exists.", Toast.LENGTH_SHORT).show();
+                } else if (DB.insertUser(email1,password1,name1,surname,phone)) {
                     Intent intent = new Intent(this, Verify.class );
                     intent.putExtra("USER_EMAIL", email1); // Pass the email to Verify activity
                     startActivity(intent);
                 } else {
-                    Toast.makeText(this, "Failed to register admin user.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to register user.", Toast.LENGTH_SHORT).show();
                 }
             }
 

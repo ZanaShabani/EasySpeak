@@ -1,4 +1,5 @@
 package com.example.speakeasy;
+import static android.content.ContentValues.TAG;
 import static java.util.Currency.getInstance;
 
 import android.content.ContentValues;
@@ -22,26 +23,13 @@ public class DB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table users(email TEXT PRIMARY KEY, password TEXT)");
-        db.execSQL("CREATE TABLE adminUser (email TEXT PRIMARY KEY, password TEXT, name TEXT,surname TEXT, phone TEXT)");
-        db.execSQL("CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task_name TEXT)");
+        db.execSQL("CREATE TABLE users(email TEXT PRIMARY KEY, name TEXT, surname TEXT, phone TEXT, password TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("Drop table if exists users");
-        db.execSQL("DROP TABLE IF EXISTS adminUser");
         onCreate(db);
-    }
-
-    public boolean insertTask(String task_name){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put("task_name",task_name);
-
-        long result=db.insert("tasks",null,contentValues);
-        return result!= -1;
-
     }
 
     public Boolean checkEmail(String email){
@@ -54,7 +42,7 @@ public class DB extends SQLiteOpenHelper {
     }
     public Boolean validateUser(String email,String password){
         SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery("Select password from adminUser where email=?",new String[]{email});
+        Cursor cursor=db.rawQuery("Select password from users where email=?",new String[]{email});
 
         if(cursor.moveToFirst()){
             String storedHashedPassword=cursor.getString(0);
@@ -65,29 +53,32 @@ public class DB extends SQLiteOpenHelper {
         cursor.close();
         return false;
     }
-    public Boolean insertAdminUser(String email, String password, String name,String surname, String phone) {
+    public Boolean insertUser(String email, String password, String name, String surname, String phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
+        // Hash the password before storing it
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
         contentValues.put("email", email);
         contentValues.put("password", hashedPassword);
         contentValues.put("name", name);
         contentValues.put("surname", surname);
         contentValues.put("phone", phone);
 
-        long result = db.insert("adminUser", null, contentValues);
-        return result != -1;
+        // Attempt to insert into the database
+        long result = db.insert("users", null, contentValues);
+
+        // Log the result of the insert operation
+        if (result == -1) {
+            Log.e(TAG, "Error inserting user: " + email);
+            return false;  // Insertion failed
+        } else {
+            Log.d(TAG, "User inserted successfully: " + email);
+            return true;   // Insertion successful
+        }
     }
 
-    // Check if admin user exists by email
-    public Boolean checkAdminEmail(String email) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM adminUser WHERE email=?", new String[]{email});
-        boolean exists = cursor.getCount() > 0;
-        cursor.close();
-        return exists;
-    }
     public boolean updateUserPassword(String email, String newPassword) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
