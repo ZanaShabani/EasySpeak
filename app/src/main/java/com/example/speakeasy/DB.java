@@ -22,39 +22,20 @@ public class DB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table users(email TEXT PRIMARY KEY, password TEXT)");
-        db.execSQL("CREATE TABLE adminUser (email TEXT PRIMARY KEY, password TEXT, name TEXT,surname TEXT, phone TEXT)");
-        db.execSQL("CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task_name TEXT)");
+        db.execSQL("Create Table users(name TEXT PRIMARY KEY, surname TEXT, email TEXT, phone TEXT, password TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("Drop table if exists users");
-        db.execSQL("DROP TABLE IF EXISTS adminUser");
         onCreate(db);
     }
 
-    public boolean insertTask(String task_name){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put("task_name",task_name);
 
-        long result=db.insert("tasks",null,contentValues);
-        return result!= -1;
 
-    }
-
-    public Boolean checkEmail(String email){
-        SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.rawQuery("Select * from users where email=?",new String[]{email});
-        if (cursor.getCount()>0){
-            return true;
-        }else return false;
-
-    }
     public Boolean validateUser(String email,String password){
         SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery("Select password from adminUser where email=?",new String[]{email});
+        Cursor cursor=db.rawQuery("Select password from users where email=?",new String[]{email});
 
         if(cursor.moveToFirst()){
             String storedHashedPassword=cursor.getString(0);
@@ -65,7 +46,7 @@ public class DB extends SQLiteOpenHelper {
         cursor.close();
         return false;
     }
-    public Boolean insertAdminUser(String email, String password, String name,String surname, String phone) {
+    public Boolean insertUser(String email, String password, String name,String surname, String phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -76,19 +57,33 @@ public class DB extends SQLiteOpenHelper {
         contentValues.put("surname", surname);
         contentValues.put("phone", phone);
 
-        long result = db.insert("adminUser", null, contentValues);
+        long result = db.insert("users", null, contentValues);
         return result != -1;
     }
 
-    // Check if admin user exists by email
-    public Boolean checkAdminEmail(String email) {
+    public Boolean checkEmail(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM adminUser WHERE email=?", new String[]{email});
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email=?", new String[]{email});
         boolean exists = cursor.getCount() > 0;
         cursor.close();
         return exists;
 
     }
+
+    public String getUsername(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT name FROM users WHERE email=?", new String[]{email});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String name = cursor.getString(0);
+            cursor.close();
+            return name;
+        }
+
+        cursor.close();
+        return null;
+    }
+
     public Boolean userExists(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from users where email=?", new String[]{email});

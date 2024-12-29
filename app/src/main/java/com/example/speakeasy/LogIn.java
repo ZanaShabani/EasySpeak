@@ -39,8 +39,17 @@ public class LogIn extends AppCompatActivity {
                 Toast.makeText(LogIn.this, "Account does not exist", Toast.LENGTH_SHORT).show();
             } else if (!DB.validateUser(email2, password2)) {
                 Toast.makeText(LogIn.this, "Incorrect password", Toast.LENGTH_SHORT).show();
-            } else { loginNotification(); Intent intent = new Intent(this, HomePage.class);
-                startActivity(intent); } });
+            } else {
+                loginNotification();
+                Intent intent = new Intent(this, HomePage.class);
+                intent.putExtra("USER_EMAIL", email2);
+                startActivity(intent);
+
+
+
+            }
+
+        });
 
         signup_button.setOnClickListener(view->{
             startActivity(new Intent(this, SignUp.class));
