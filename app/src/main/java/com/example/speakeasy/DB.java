@@ -97,7 +97,6 @@ public class DB extends SQLiteOpenHelper {
         String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt()); // Hash the password
         values.put("password", hashedPassword);
 
-        // Log the email being updated
         Log.d("DB", "Attempting to update password for email: " + email);
 
         int rows = db.update("users", values, "email = ?", new String[]{email});

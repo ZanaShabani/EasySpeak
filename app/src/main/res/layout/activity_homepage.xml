@@ -100,7 +100,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <!-- Listening lesson -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -131,7 +130,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <!-- Speaking lesson -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -162,7 +160,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <!-- Grammar lesson -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

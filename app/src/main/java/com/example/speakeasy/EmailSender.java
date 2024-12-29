@@ -64,7 +64,6 @@ public class EmailSender {
         long currentTime = System.currentTimeMillis();
         long elapsedTime = currentTime - otpGenerationTime;
 
-        // Check if the elapsed time is less than 2 minutes
         return TimeUnit.MILLISECONDS.toMinutes(elapsedTime) < 2;
     }
 }

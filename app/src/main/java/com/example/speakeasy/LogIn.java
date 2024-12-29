@@ -2,8 +2,11 @@ package com.example.speakeasy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ public class LogIn extends AppCompatActivity {
     EditText password;
     TextView forgot_password1;
     Button login_button;
+    ImageView image1;
     DB DB;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +29,13 @@ public class LogIn extends AppCompatActivity {
         password= findViewById(R.id.password);
         forgot_password1 = findViewById(R.id.Forgot_Password);
         login_button = findViewById(R.id.login_button);
+        image1 = findViewById(R.id.imageView);
 
         DB = new DB(this);
+
+        Animation pulse = AnimationUtils.loadAnimation(this, R.anim.pulse);
+        image1.startAnimation(pulse);
+
         login_button.setOnClickListener(view->{
             String email2 = email.getText().toString().trim();
             String password2 = password.getText().toString().trim();
