@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,12 +32,16 @@ public class LogIn extends AppCompatActivity {
             String email2 = email.getText().toString().trim();
             String password2 = password.getText().toString().trim();
 
-            if(DB.validateUser(email2, password2)){
-                loginNotification();
-                Intent intent = new Intent(this, HomePage.class);
-                startActivity(intent);
-            }
-        });
+            if (email2.isEmpty() || password2.isEmpty()) {
+                Toast.makeText(LogIn.this, "Please enter both email and password", Toast.LENGTH_SHORT).show();
+                return; }
+            if (!DB.userExists(email2)) {
+                Toast.makeText(LogIn.this, "Account does not exist", Toast.LENGTH_SHORT).show();
+            } else if (!DB.validateUser(email2, password2)) {
+                Toast.makeText(LogIn.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+            } else { loginNotification(); Intent intent = new Intent(this, HomePage.class);
+                startActivity(intent); } });
+
         signup_button.setOnClickListener(view->{
             startActivity(new Intent(this, SignUp.class));
         });

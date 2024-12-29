@@ -87,7 +87,15 @@ public class DB extends SQLiteOpenHelper {
         boolean exists = cursor.getCount() > 0;
         cursor.close();
         return exists;
+
     }
+    public Boolean userExists(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from users where email=?", new String[]{email});
+        boolean exists = cursor.getCount() > 0; cursor.close();
+        return exists;
+    }
+
     public boolean updateUserPassword(String email, String newPassword) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
