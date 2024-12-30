@@ -63,6 +63,8 @@ public class Verify extends AppCompatActivity {
     }
 
     private void checkCode() {
+        Intent intent = getIntent();
+        boolean fromForget = intent.getBooleanExtra("From_forgotPassword", false);
         if (!EmailSender.isOtpValid()) {
             Toast.makeText(this, "OTP has expired. Please request a new one.", Toast.LENGTH_SHORT).show();
             return;
@@ -70,9 +72,12 @@ public class Verify extends AppCompatActivity {
 
         String inputString = otp.getText().toString().trim();
         if (inputString.equals(code)) {
-            Toast.makeText(this, "Account verified, you may proceed to log in!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, LogIn.class));
-
+            if(fromForget){
+                startActivity(new Intent(this, ResetPassword.class));
+            }else {
+                Toast.makeText(this, "Account verified, you may proceed to log in!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, LogIn.class));
+            }
         } else {
             Toast.makeText(this, "Incorrect code, try again.", Toast.LENGTH_SHORT).show();
         }

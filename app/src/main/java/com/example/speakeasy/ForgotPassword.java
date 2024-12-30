@@ -34,8 +34,9 @@ public class ForgotPassword extends AppCompatActivity {
                 return;
             }
             if(DB.userExists(email)){
-                Intent intent = new Intent(this, ResetPassword.class);
-                intent.putExtra("Email", email);
+                Intent intent = new Intent(this, Verify.class);
+                intent.putExtra("From_forgotPassword", true);
+                intent.putExtra("USER_EMAIL", email);
                 startActivity(intent);
             }else{
                 Toast.makeText(this, "Please check your credentials again!", Toast.LENGTH_SHORT).show();

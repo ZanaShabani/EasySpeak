@@ -63,7 +63,8 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(this, "User already exists.", Toast.LENGTH_SHORT).show();
                 } else if (DB.insertUser(email1,password1,name1,surname,phone)) {
                     Intent intent = new Intent(this, Verify.class );
-                    intent.putExtra("USER_EMAIL", email1); // Pass the email to Verify activity
+                    intent.putExtra("USER_EMAIL", email1);
+                    intent.putExtra("From_forgotPassword", false);
                     startActivity(intent);
                 } else {
                     Toast.makeText(this, "Failed to register user.", Toast.LENGTH_SHORT).show();
