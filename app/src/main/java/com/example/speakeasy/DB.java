@@ -94,10 +94,8 @@ public class DB extends SQLiteOpenHelper {
     public boolean updateUserPassword(String email, String newPassword) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt()); // Hash the password
+        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
         values.put("password", hashedPassword);
-
-        Log.d("DB", "Attempting to update password for email: " + email);
 
         int rows = db.update("users", values, "email = ?", new String[]{email});
         if (rows > 0) {
