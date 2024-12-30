@@ -22,6 +22,12 @@
             android:layout_width="229dp"
             android:layout_height="197dp"
             android:layout_marginLeft="85dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:srcCompat="@drawable/communication" />
 
         <EditText
